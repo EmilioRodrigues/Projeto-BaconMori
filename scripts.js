@@ -1,14 +1,22 @@
 const list = document.querySelector('ul')
+const buttonShowAll = document.querySelector('.show-all')
+
 let myLi = ""
 
-menuOptions.forEach((product) => {
-myLi +=
-`       <li>
-            <img src="./img/bacon-egg.png" alt="hamburger bacon-egg">
-            <p>X-Bacon Egg</p>
-            <p class="item-price">R$ 30,00</p>
-        </li>
-`
-})
 
-console.log(myLi)
+function showAll() {
+    menuOptions.forEach((product) => {
+        myLi +=
+            `   <li>
+                    <img src=${product.src}>
+                    <p>${product.name}</p>
+                    <p class="item-price">R$  ${product.price}</p>
+                </li>
+        `
+    })
+
+    list.innerHTML = myLi
+}
+
+
+buttonShowAll.addEventListener('click', showAll)
