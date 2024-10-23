@@ -4,8 +4,16 @@ const buttonMapAll = document.querySelector('.map-all')
 const buttonSumAll = document.querySelector('.sum-all')
 const buttonFilterAll = document.querySelector('.filter-all')
 
-let myLi = ""
 
+
+function formatCurrency(value) {
+    const newValue = value.toLocaleString('pt-br', {
+        sytle: 'currency',
+        currency: 'BRL',
+    })
+
+    return newValue
+}
 
 function showAll(productsArray) {
 
@@ -16,7 +24,7 @@ function showAll(productsArray) {
             `   <li>
                     <img src=${product.src}>
                     <p>${product.name}</p>
-                    <p class="item-price">R$  ${product.price}</p>
+                    <p class="item-price">R$  ${formatCurrency(product.price)}</p>
                 </li>
             `
     })
@@ -44,17 +52,19 @@ function mapAllItems() {
 
 function sumAllItems() {
     const totalValue = menuOptions.reduce((acc, curr) => acc + curr.price, 0)
-    list.innerHTML = 
-    `<li>
-    <p>O valor total dos itens é   : R$ ${totalValue}</p>
-    </li>`
+    list.innerHTML =
+    `
+    <li>
+    <p>O valor total dos itens é   : R$ ${formatCurrency(totalValue)}</p>
+    </li>
+    `
 
 
     console.log(totalValue)
 }
 
 
-function filterAllItems(){
+function filterAllItems() {
     const filterJustVegan = menuOptions.filter((product) => product.vegan)
 
 
